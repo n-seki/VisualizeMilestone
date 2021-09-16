@@ -21,7 +21,7 @@ instance FromJSON User
 data Issue = Issue
   { number :: Int
   , title :: String
-  , url :: String
+  , html_url :: String
   , assignees :: [User]
   , state :: String
   } deriving (Show, Generic)
@@ -94,7 +94,7 @@ achievementByUserLine (name, (closeIssueCount, totalIssueCount)) = "  " ++ name 
         spaceCount = 18 - length name
 
 issueLine :: Issue -> String
-issueLine issue = "  " ++ title issue ++ "(" ++ url issue ++ ")"
+issueLine issue = "  " ++ title issue ++ "(" ++ html_url issue ++ ")"
 
 allIssue :: BC.ByteString -> BC.ByteString -> BC.ByteString -> BC.ByteString -> IO (Maybe [Issue])
 allIssue token owner repository milestone = do
